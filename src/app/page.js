@@ -1,4 +1,4 @@
-// page.js
+
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -134,14 +134,14 @@ export default function Page() {
 
   return (
     <div className="relative min-h-screen bg-black text-white p-2 md:p-6 lg:p-10 overflow-x-hidden flex items-center justify-center">
-      {/* Dynamic Full-Screen Background */}
+      
       {mounted && (
         <div className="fixed inset-0 z-0">
           <CosmicBackground monthIndex={currentDate.getMonth()} />
         </div>
       )}
 
-      {/* Cursor Glow */}
+      
       <div
         className="pointer-events-none fixed w-40 h-40 rounded-full bg-blue-500/20 blur-3xl -translate-x-1/2 -translate-y-1/2 z-1 hidden md:block"
         style={{ left: cursor.x, top: cursor.y }}
@@ -160,7 +160,7 @@ export default function Page() {
         style={{ zIndex: 2, boxShadow: "0 0 60px rgba(180,40,0,0.12), 0 0 120px rgba(80,0,120,0.08)" }}
       >
         <div className="relative flex flex-col md:flex-row z-10">
-          {/* Hero Image Section */}
+          
           <motion.div
             className="w-full md:w-1/3 min-h-40 md:h-auto relative overflow-hidden rounded-4xl"
             whileHover={{ scale: 1.02 }}
@@ -181,7 +181,7 @@ export default function Page() {
             </div>
           </motion.div>
 
-          {/* Calendar Grid Section */}
+          
           <div className="w-full md:w-2/3 p-4 md:p-8 space-y-4 overflow-hidden">
             <div className="flex items-center justify-between">
               <motion.button
@@ -289,7 +289,6 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Note Area Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -314,7 +313,6 @@ export default function Page() {
         </motion.div>
       </motion.div>
 
-      {/* Holiday Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
