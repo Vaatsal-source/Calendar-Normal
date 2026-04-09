@@ -133,7 +133,7 @@ export default function Page() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black text-white p-2 md:p-4 overflow-x-hidden flex items-center justify-center">
+    <div className="relative min-h-screen bg-black text-white p-2 md:p-6 lg:p-10 overflow-x-hidden flex items-center justify-center">
       {/* Dynamic Full-Screen Background */}
       {mounted && (
         <div className="fixed inset-0 z-0">
@@ -156,7 +156,7 @@ export default function Page() {
           WebkitBackdropFilter: cardHovered ? "blur(32px)" : "blur(12px)",
         }}
         transition={{ duration: 0.45, ease: "easeInOut" }}
-        className="relative py-4 md:py-7 w-full max-w-7xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+        className="relative py-4 md:py-10 lg:py-12 w-full max-w-7xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
         style={{ zIndex: 2, boxShadow: "0 0 60px rgba(180,40,0,0.12), 0 0 120px rgba(80,0,120,0.08)" }}
       >
         <div className="relative flex flex-col md:flex-row z-10">
@@ -182,7 +182,7 @@ export default function Page() {
           </motion.div>
 
           {/* Calendar Grid Section */}
-          <div className="w-full md:w-2/3 p-4 md:p-6 space-y-4 overflow-hidden">
+          <div className="w-full md:w-2/3 p-4 md:p-8 space-y-4 overflow-hidden">
             <div className="flex items-center justify-between">
               <motion.button
                 whileHover={{ scale: 1.1 }}
@@ -230,7 +230,7 @@ export default function Page() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="grid grid-cols-7 gap-1 md:gap-1.5"
+                className="grid grid-cols-7 gap-1.5 md:gap-2"
               >
                 {daysArray.map((day, index) => {
                   if (!day) return <div key={`e-${index}`} />;
@@ -241,7 +241,7 @@ export default function Page() {
                   const holidayKey = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${day}`;
                   const holidayName = customHolidays[holidayKey];
 
-                  let cellClass = "h-10 md:h-11 flex items-center justify-center cursor-pointer text-xs md:text-sm font-medium relative overflow-hidden select-none ";
+                  let cellClass = "h-10 md:h-12 lg:h-14 flex items-center justify-center cursor-pointer text-xs md:text-sm lg:text-base font-medium relative overflow-hidden select-none ";
                   if (isStart && isEnd) cellClass += "text-white rounded-xl";
                   else if (isStart) cellClass += "text-white rounded-l-full";
                   else if (isEnd) cellClass += "text-white rounded-r-full";
@@ -275,11 +275,11 @@ export default function Page() {
                       <span className="relative z-10">{day}</span>
                       
                       {holidayName && (
-                        <span className="absolute top-1 right-1 w-1 h-1 rounded-full" style={{ background: "#8800cc", boxShadow: "0 0 4px #8800cc" }} />
+                        <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full" style={{ background: "#8800cc", boxShadow: "0 0 4px #8800cc" }} />
                       )}
 
                       {hasNote(day) && (
-                        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full" style={{ background: "#ff6600", boxShadow: "0 0 6px #ff6600" }} />
+                        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ background: "#ff6600", boxShadow: "0 0 6px #ff6600" }} />
                       )}
                     </motion.div>
                   );
@@ -293,7 +293,7 @@ export default function Page() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative border-t border-white/10 p-4 z-10"
+          className="relative border-t border-white/10 p-4 md:p-6 z-10"
           style={{ background: "rgba(10, 3, 18, 0.2)" }}
         >
           <p className="text-[10px] md:text-xs text-white/40 mb-2 uppercase tracking-widest">Pen Your Thoughts</p>
@@ -309,7 +309,7 @@ export default function Page() {
               if (key) setNotesMap((prev) => ({ ...prev, [key]: value }));
             }}
             placeholder="Write something meaningful..."
-            className="w-full h-20 md:h-24 p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:ring-2 focus:ring-blue-400/50 focus:shadow-lg focus:shadow-blue-500/20 transition resize-none text-sm outline-none"
+            className="w-full h-24 md:h-32 p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:ring-2 focus:ring-blue-400/50 focus:shadow-lg focus:shadow-blue-500/20 transition resize-none text-sm md:text-base outline-none"
           />
         </motion.div>
       </motion.div>
