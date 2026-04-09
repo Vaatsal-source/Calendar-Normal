@@ -1,3 +1,4 @@
+// page.js
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -132,12 +133,17 @@ export default function Page() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black text-white p-2 md:p-4 overflow-x-hidden">
-      {mounted && <CosmicBackground monthIndex={currentDate.getMonth()} />}
+    <div className="relative min-h-screen bg-black text-white p-2 md:p-4 overflow-x-hidden flex items-center justify-center">
+      {/* Dynamic Full-Screen Background */}
+      {mounted && (
+        <div className="fixed inset-0 z-0">
+          <CosmicBackground monthIndex={currentDate.getMonth()} />
+        </div>
+      )}
 
-      {/* Cursor Glow - Hidden on small screens as there is no cursor */}
+      {/* Cursor Glow */}
       <div
-        className="pointer-events-none fixed w-40 h-40 rounded-full bg-blue-500/20 blur-3xl -translate-x-1/2 -translate-y-1/2 z-0 hidden md:block"
+        className="pointer-events-none fixed w-40 h-40 rounded-full bg-blue-500/20 blur-3xl -translate-x-1/2 -translate-y-1/2 z-1 hidden md:block"
         style={{ left: cursor.x, top: cursor.y }}
       />
 
@@ -145,20 +151,21 @@ export default function Page() {
         onHoverStart={() => setCardHovered(true)}
         onHoverEnd={() => setCardHovered(false)}
         animate={{
-          backgroundColor: cardHovered ? "rgba(5, 2, 10, 0.72)" : "rgba(5, 2, 10, 0.10)",
-          backdropFilter: cardHovered ? "blur(20px)" : "blur(4px)",
-          WebkitBackdropFilter: cardHovered ? "blur(20px)" : "blur(4px)",
+          backgroundColor: cardHovered ? "rgba(5, 2, 10, 0.65)" : "rgba(5, 2, 10, 0.35)",
+          backdropFilter: cardHovered ? "blur(32px)" : "blur(12px)",
+          WebkitBackdropFilter: cardHovered ? "blur(32px)" : "blur(12px)",
         }}
         transition={{ duration: 0.45, ease: "easeInOut" }}
-        className="relative mt-4 md:mt-20 py-4 md:py-7 w-full max-w-7xl mx-auto border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+        className="relative py-4 md:py-7 w-full max-w-7xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
         style={{ zIndex: 2, boxShadow: "0 0 60px rgba(180,40,0,0.12), 0 0 120px rgba(80,0,120,0.08)" }}
       >
-        <div className="flex flex-col md:flex-row">
+        <div className="relative flex flex-col md:flex-row z-10">
           {/* Hero Image Section */}
           <motion.div
-            className="w-full md:w-1/3 h-48 md:h-auto relative overflow-hidden"
+            className="w-full md:w-1/3 min-h-40 md:h-auto relative overflow-hidden rounded-4xl"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
+            
           >
             <motion.img
               key={currentDate.getMonth()}
@@ -286,8 +293,8 @@ export default function Page() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="border-t border-white/10 p-4"
-          style={{ background: "rgba(10, 3, 18, 0.3)" }}
+          className="relative border-t border-white/10 p-4 z-10"
+          style={{ background: "rgba(10, 3, 18, 0.2)" }}
         >
           <p className="text-[10px] md:text-xs text-white/40 mb-2 uppercase tracking-widest">Pen Your Thoughts</p>
           <motion.textarea
@@ -302,7 +309,7 @@ export default function Page() {
               if (key) setNotesMap((prev) => ({ ...prev, [key]: value }));
             }}
             placeholder="Write something meaningful..."
-            className="w-full h-20 md:h-24 p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:ring-2 focus:ring-blue-400/50 focus:shadow-lg focus:shadow-blue-500/20 transition resize-none text-sm"
+            className="w-full h-20 md:h-24 p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:ring-2 focus:ring-blue-400/50 focus:shadow-lg focus:shadow-blue-500/20 transition resize-none text-sm outline-none"
           />
         </motion.div>
       </motion.div>
